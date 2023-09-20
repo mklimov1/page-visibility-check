@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page visibility check</title>
+</head>
+<body>
+  <div id="visibilityState">
+    <h3>visibilityState</h3>
+  </div>
+  <hr>
+  <div id="focusblur">
+    <h3>focus / blur</h3>
+  </div>
+  <hr>
+  <div id="pagehideshow">
+    <h3>pageshow / pagehide</h3>
+  </div>
+
+  <script>
+    const visibilityStateEl = document.querySelector('#visibilityState');
+    const focusblurEl = document.querySelector('#focusblur');
+    const pagehideshowEl = document.querySelector('#pagehideshow');
+
+    const createTextElement = (text) => {
+      const el = document.createElement('p');
+      el.innerHTML = text;
+      return el;
+    };
+
+    window.addEventListener('visibilitychange', () => {
+      visibilityStateEl.append(createTextElement(document.visibilityState));
+    })
+
+    window.addEventListener('focus', () => {
+      focusblurEl.append(createTextElement('focus'));
+    })
+    window.addEventListener('blur', () => {
+      focusblurEl.append(createTextElement('blur'));
+    })
+
+    window.addEventListener('pageshow', () => {
+      pagehideshowEl.append(createTextElement('pageshow'));
+    })
+    window.addEventListener('pagehide', () => {
+      pagehideshowEl.append(createTextElement('pagehide'));
+    })
+  </script>
+</body>
+</html>
